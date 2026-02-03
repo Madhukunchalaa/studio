@@ -1,0 +1,957 @@
+/* OPTION 6: MODERN EDITORIAL (ASYMMETRIC) */
+:root {
+    --bg-color: #080808;
+    --text-color: #e0e0e0;
+    --accent: #00D2FF; /* Theme Cyan */
+    --font-serif: 'Inter', sans-serif; /* Standardized */
+    --font-sans: 'Inter', sans-serif; /* Standardized */
+}
+
+* { box-sizing: border-box; }
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-sans);
+    margin: 0;
+    overflow-x: hidden;
+    font-weight: 400; /* Standard Inter weight */
+}
+
+a { text-decoration: none; color: inherit; transition: color 0.5s; }
+h1, h2, h3 { margin: 0; font-weight: 700; font-family: var(--font-serif); }
+
+/* UTILS */
+.container {
+    max-width: 1800px; /* Increased from 1400px to fill space */
+    margin: 0 auto;
+    padding: 0 2vw; /* Reduced side padding */
+    position: relative;
+}
+
+.serif { font-family: var(--font-serif); }
+.italic { font-style: normal; color: var(--accent); } /* Italic replaced by accent color for emphasis since Inter Italic might look weak */
+
+/* Button overrides/expansions */
+.btn-primary {
+    background: var(--accent);
+    color: #000;
+    padding: 12px 30px; /* Reduced from likely default */
+    border-radius: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    letter-spacing: 0.05em;
+    min-width: 160px; /* Constrain width */
+}
+
+.btn-primary:hover {
+    box-shadow: 0 0 20px rgba(0, 210, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    padding: 12px 30px;
+    background: transparent;
+    border: 1px solid var(--text-color);
+    color: var(--text-color);
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.btn-secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    box-shadow: 0 4px 15px rgba(0, 210, 255, 0.2);
+}
+
+/* 1. HERO - ASYMMETRIC */
+.editorial-hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-top: 100px; /* Nav space */
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.hero-text {
+    position: relative;
+    z-index: 10;
+}
+
+.hero-title {
+    font-size: clamp(2.5rem, 6vw, 4.5rem); /* Matcha avatar-landing */
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    font-weight: 700;
+}
+
+.hero-video-wrap {
+    position: relative;
+    height: 80vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.hero-video-wrap video {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: sepia(20%) contrast(1.1);
+}
+
+.scroll-line {
+    position: absolute;
+    left: 4vw;
+    bottom: 0;
+    height: 150px;
+    width: 1px;
+    background: rgba(255,255,255,0.2);
+}
+
+/* 2. OVERLAP SECTION (INTRO) */
+.section-overlap {
+    position: relative;
+    padding: 3rem 0; /* Reduced from 5rem */
+}
+
+
+.overlap-bg-text {
+    font-family: var(--font-serif);
+    font-size: 15vw;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(255,255,255,0.03);
+    white-space: nowrap;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.overlap-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.intro-video-left {
+    height: 500px; /* Portrait/Vertical feel */
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid #333;
+    position: relative;
+}
+
+.intro-video-left video {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+    transition: opacity 0.5s;
+}
+
+.intro-video-left:hover video { opacity: 1; }
+
+.intro-card {
+    background: #111;
+    padding: 4rem;
+    /* Reset margins for grid */
+    margin-left: 0; 
+    border-left: 1px solid var(--accent);
+}
+
+@media (max-width: 1024px) {
+    .overlap-grid { grid-template-columns: 1fr; }
+    .intro-video-left { order: -1; height: 300px; margin-bottom: 2rem; }
+}
+
+/* 3. COLUMNS SECTION (SERVICES) */
+.section-columns {
+    padding: 2.5rem 0;
+}
+
+.cols-header {
+    margin-bottom: 4rem;
+    text-align: left;
+    border-bottom: 1px solid #333;
+    padding-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.cols-header h2 { font-size: 3rem; }
+.cols-header p { color: #888; max-width: 300px; text-align: right; }
+
+/* 3. SERVICES (CINEMA SHOWCASE) */
+.section-services {
+    padding: 2.5rem 0;
+    background: #000;
+    position: relative;
+    border-top: 1px solid #111;
+}
+
+/* TABS NAVIGATION */
+.services-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #222;
+    padding-bottom: 1px;
+}
+
+.s-tab-btn {
+    background: transparent;
+    border: none;
+    color: #666;
+    font-size: 1.1rem;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s;
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.s-tab-btn::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0; width: 100%; height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.s-tab-btn:hover { color: #fff; }
+.s-tab-btn.active { color: #fff; }
+.s-tab-btn.active::after { transform: scaleX(1); }
+
+/* MAIN STAGE */
+.service-stage {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    background: #050505;
+    border: 1px solid #222;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.stage-panel {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.6s ease;
+    display: flex;
+}
+
+.stage-panel.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Background Video Layer */
+.stage-video-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    filter: brightness(0.4);
+    transition: transform 10s ease; /* Subtle zoom effect */
+}
+
+.stage-panel.active .stage-video-bg {
+    transform: scale(1.05);
+}
+
+/* Content Overlay */
+.stage-content {
+    position: relative;
+    z-index: 2;
+    width: 45%;
+    height: 100%;
+    background: linear-gradient(90deg, #000 0%, rgba(0,0,0,0.9) 60%, transparent 100%);
+    padding: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transform: translateX(-50px);
+    transition: transform 0.6s ease 0.1s;
+}
+
+.stage-panel.active .stage-content {
+    transform: translateX(0);
+}
+
+.stage-icon {
+    width: 80px; height: 80px;
+    margin-bottom: 2rem;
+    color: var(--accent);
+    filter: drop-shadow(0 0 10px rgba(0,210,255,0.3));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stage-icon svg, 
+.stage-icon img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: contain; 
+    fill: currentColor; 
+}
+
+.stage-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+    font-family: var(--font-serif);
+}
+
+.stage-desc {
+    font-size: 1.1rem;
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    max-width: 90%;
+}
+
+@media (max-width: 768px) {
+    .services-tabs { gap: 1rem; justify-content: flex-start; overflow-x: auto; padding-bottom: 0; border-bottom: none; }
+    .s-tab-btn { white-space: nowrap; font-size: 0.9rem; padding: 0.8rem 1rem; }
+    
+    .service-stage { height: auto; min-height: 600px; display: flex; }
+    .stage-panel { position: relative; flex-direction: column; }
+    .stage-content { width: 100%; background: linear-gradient(0deg, #000 0%, rgba(0,0,0,0.8) 80%, transparent 100%); padding: 2rem; justify-content: flex-end; }
+    .stage-title { font-size: 2rem; }
+}
+
+/* 4. PROCESS SECTION (SNAKE PIPE GRID) */
+.section-process {
+    padding: 2.5rem 0;
+    background: #050505;
+    overflow: hidden;
+}
+
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem 3rem; /* Widen gap for pipes */
+    position: relative;
+    max-width: 1200px;
+    margin: 4rem auto 0;
+}
+
+.p-card {
+    background-color: #111;
+    background-image: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.85)), var(--p-bg);
+    background-size: cover;
+    background-position: center;
+    border: 1px solid #222;
+    padding: 2.5rem;
+    position: relative;
+    z-index: 2;
+    transition: all 0.4s ease;
+}
+
+.p-card:hover { 
+    border-color: var(--accent);
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), var(--p-bg); /* Reveal image */
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 210, 255, 0.2);
+}
+
+.p-num {
+    font-size: 3rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.15); /* Increased visibility against bg */
+    position: absolute;
+    top: 1rem; right: 1.5rem;
+    z-index: 1; /* Ensure above bg */
+}
+
+.p-title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--accent);
+    transition: color 0.3s ease;
+}
+
+.p-desc { 
+    color: #888; 
+    line-height: 1.6; 
+    font-size: 0.95rem; 
+    transition: color 0.3s ease;
+}
+
+.p-card:hover .p-title {
+    color: #fff;
+}
+
+.p-card:hover .p-desc {
+    color: var(--accent);
+}
+
+/* --- PIPES & LIQUID ANIMATION --- */
+@keyframes flowRight {
+    0% { background-position: -100px 0; }
+    100% { background-position: 200px 0; }
+}
+@keyframes flowDown {
+    0% { background-position: 0 -100px; }
+    100% { background-position: 0 200px; }
+}
+@keyframes flowLeft {
+    0% { background-position: 200px 0; }
+    100% { background-position: -100px 0; }
+}
+
+/* Base Pipe Style */
+.pipe-h, .pipe-v {
+    position: absolute;
+    background: #222; /* Empty pipe color */
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* The Liquid (Pseudo-element overlay) */
+.pipe-h::after, .pipe-v::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    /* Neon Liquid Gradient */
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    background-size: 100px 100%;
+    background-repeat: no-repeat;
+    opacity: 0.8;
+}
+
+.pipe-v::after {
+    background: linear-gradient(180deg, transparent, var(--accent), transparent);
+    background-size: 100% 100px;
+}
+
+/* DESKTOP SNAKE LAYOUT */
+@media (min-width: 1025px) {
+    /* Reorder for Snake Flow: 
+       Row 1: 1, 2, 3
+       Row 2: 6, 5, 4 (Visual) -> 4 is Right, 5 Middle, 6 Left
+    */
+    .p-card:nth-child(1) { order: 1; }
+    .p-card:nth-child(2) { order: 2; }
+    .p-card:nth-child(3) { order: 3; }
+    .p-card:nth-child(4) { order: 6; } /* Visually Last (Bottom Right) */
+    .p-card:nth-child(5) { order: 5; }
+    .p-card:nth-child(6) { order: 4; } /* Visually First in Row 2 (Bottom Left) */
+
+    /* Horizontal Pipes (Rightwards: 1->2, 2->3) */
+    .p-card:nth-child(1)::before, 
+    .p-card:nth-child(2)::before {
+        content: '';
+        position: absolute;
+        top: 50%; right: -3.5rem; /* Stretch across gap */
+        width: 3.5rem; height: 6px; /* Pipe Thickness */
+        background: #222;
+        z-index: 1;
+        border-radius: 4px;
+    }
+    /* Liquid Animation Right */
+    .p-card:nth-child(1)::after, .p-card:nth-child(2)::after {
+        content: '';
+        position: absolute;
+        top: 50%; right: -3.5rem;
+        width: 3.5rem; height: 6px;
+        background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        background-size: 50px 100%;
+        animation: flowRight 1.5s linear infinite;
+        z-index: 2;
+        border-radius: 4px;
+    }
+
+    /* Vertical Bend Pipe (3 -> 4) */
+    /* 3 is Top Right. 4 is Bottom Right. Connect Bottom-3 to Top-4 */
+    .p-card:nth-child(3) .v-pipe {
+        position: absolute;
+        bottom: -4.5rem; left: 50%;
+        transform: translateX(-50%);
+        width: 6px; height: 4.5rem;
+        background: #222;
+    }
+    .p-card:nth-child(3) .v-pipe::after {
+        content: ''; position: absolute; top:0; left:0; width:100%; height:100%;
+        background: linear-gradient(180deg, transparent, var(--accent), transparent);
+        background-size: 100% 50px;
+        animation: flowDown 1.5s linear infinite;
+    }
+
+    /* Horizontal Pipes (Leftwards: 4->5, 5->6) */
+    /* 4 is Bottom Right. 5 is Bottom Middle. Connector is on Left of 4. */
+    .p-card:nth-child(4)::before, 
+    .p-card:nth-child(5)::before {
+        content: '';
+        position: absolute;
+        top: 50%; left: -3.5rem;
+        width: 3.5rem; height: 6px;
+        background: #222;
+        z-index: 1;
+        border-radius: 4px;
+    }
+    /* Liquid Animation Left */
+    .p-card:nth-child(4)::after, .p-card:nth-child(5)::after {
+        content: '';
+        position: absolute;
+        top: 50%; left: -3.5rem;
+        width: 3.5rem; height: 6px;
+        background: linear-gradient(-90deg, transparent, var(--accent), transparent); /* Reversed direction gradient? No, just flowLeft anim */
+        background: linear-gradient(270deg, transparent, var(--accent), transparent);
+        background-size: 50px 100%;
+        animation: flowLeft 1.5s linear infinite;
+        z-index: 2;
+        border-radius: 4px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .process-grid { grid-template-columns: 1fr; gap: 4rem; }
+    
+    /* Vertical Pipes for Mobile (All Down) */
+    .p-card:not(:last-child)::before {
+        content: '';
+        position: absolute;
+        bottom: -4rem; left: 50%; transform: translateX(-50%);
+        width: 6px; height: 4rem;
+        background: #222;
+        z-index: 1;
+    }
+    .p-card:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        bottom: -4rem; left: 50%; transform: translateX(-50%);
+        width: 6px; height: 4rem;
+        background: linear-gradient(180deg, transparent, var(--accent), transparent);
+        background-size: 100% 50px;
+        animation: flowDown 1.5s linear infinite;
+        z-index: 2;
+    }
+}
+
+/* 5. WHY US (Replaces Break) */
+.section-why-us {
+    position: relative;
+    padding: 2.5rem 0;
+    background: #0a0a0a;
+    border-top: 1px solid #222;
+    border-bottom: 1px solid #222;
+}
+
+.why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.why-content ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 2rem;
+}
+
+.why-content li {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    color: #ccc;
+}
+
+.why-content li::before {
+    content: '—';
+    color: var(--accent);
+    margin-right: 1rem;
+    font-weight: bold;
+}
+
+.why-image-wrap {
+    height: 600px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.why-image-wrap img, .why-image-wrap video {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: sepia(20%) contrast(1.1);
+}
+
+/* FOOTER / CTA */
+.editorial-footer {
+    padding: 2.5rem 0;
+    border-top: 1px solid #222;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+/* NAV */
+.nav-editorial {
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    padding: 2rem 4vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    mix-blend-mode: exclusion;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+@media (max-width: 1024px) {
+    .container { padding: 0 5vw; }
+    
+    .hero-grid { 
+        grid-template-columns: 1fr; 
+        gap: 3rem;
+    }
+    
+    .hero-video-wrap { 
+        height: 60vh; 
+        order: -1; /* Video on top */
+        margin-bottom: 2rem; 
+    }
+    
+    .hero-title {
+        font-size: 3.5rem;
+    }
+    
+    .intro-video-left {
+        order: -1; 
+        height: 400px; 
+    }
+    
+    .section-overlap { padding: 4rem 0; }
+    .section-columns { padding: 3rem 0; }
+    .section-services { padding: 2rem 0; }
+    .section-process { padding: 3rem 0; }
+    .section-why-us { padding: 3rem 0; }
+}
+
+@media (max-width: 768px) {
+    /* Tighten Section Gaps on Mobile */
+    .section-overlap,
+    .section-columns,
+    .section-services,
+    .section-process,
+    .section-why-us,
+    .editorial-footer {
+        padding: 2rem 0 !important;
+    }
+    .section-cta { padding: 2.5rem 0 !important; }
+
+    /* Hero Overlay for Mobile */
+    .hero-grid { 
+        display: block; 
+        position: relative; 
+        height: 100vh; /* Make hero full screen on mobile */
+        margin-top: -100px; /* Counteract body padding-top */
+        padding: 0 !important; /* OVERRIDE .container PADDING */
+        width: 100vw; /* Force full viewport width */
+        max-width: none; /* Unwrap from container constraint */
+        left: 50%; /* Center break-out */
+        margin-left: -50vw; /* Center break-out */
+    }
+    .hero-video-wrap { 
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        margin-bottom: 0;
+        z-index: 0;
+    }
+    .hero-text {
+        position: absolute; /* Lock to bottom */
+        bottom: 0; left: 0;
+        width: 100%;
+        height: auto;
+        min-height: 50vh; /* Increased gradient height for smoothness */
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end; /* Push content to very bottom */
+        padding: 4rem 2rem 3rem; /* More top padding for gradient fade */
+        /* Seamless Gradient Fade */
+        background: linear-gradient(to top, #000 0%, rgba(0,0,0,0.9) 30%, transparent 100%);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        border-top: none;
+    }
+    .hero-title { font-size: 2.5rem; text-shadow: none; margin-bottom: 1.5rem; }
+    .hero-text p { font-size: 1rem; color: #ccc; margin-bottom: 2rem; } /* Ensure subtext is visible if any */
+    .btn-primary, .btn-secondary { width: 100%; text-align: center; justify-content: center; }
+
+    /* Intro */
+    .overlap-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .intro-card { 
+        margin: 0; 
+        padding: 2rem; 
+        width: 100%; 
+        border-left: none; 
+        border-top: 1px solid var(--accent); 
+    }
+    .overlap-bg-text { font-size: 18vw; top: 20%; }
+    .intro-video-left { height: 300px; margin-bottom: 2rem; }
+
+    /* Services */
+    .section-columns .cols-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    .cols-header p { text-align: left; max-width: 100%; margin: 0; }
+    
+    .services-tabs { gap: 1rem; flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; padding-bottom: 1rem; }
+    .s-tab-btn { font-size: 0.9rem; padding: 0.5rem 1rem; flex-shrink: 0; }
+    
+    .service-stage { height: auto; min-height: 500px; display: flex; flex-direction: column; }
+    .stage-panel { position: relative; opacity: 1; visibility: visible; display: none; height: auto; flex-direction: column; }
+    .stage-panel.active { display: flex; }
+    .stage-content { 
+        width: 100%; 
+        padding: 2rem; 
+        background: linear-gradient(0deg, #000 0%, rgba(0,0,0,0.9) 70%, transparent 100%); 
+        justify-content: flex-end; 
+        transform: none !important;
+        /* Ensure content sits on top */
+        margin-top: auto; 
+        min-height: 300px;
+    }
+    .stage-video-bg { position: absolute; height: 100%; }
+
+    /* Process */
+    .process-grid { grid-template-columns: 1fr; gap: 3rem; margin-top: 2rem; }
+    .p-card { margin-bottom: 0; }
+    /* Hide desktop pipes, rely on mobile pipes defined above or simplify */
+    
+    /* Why Us */
+    .why-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .why-image-wrap { height: 300px; order: -1; }
+    .why-content h2 { font-size: 2.2rem; }
+
+    /* CTA */
+    .section-cta { padding: 4rem 0 !important; }
+    .section-cta h2 { font-size: 2.5rem !important; }
+    .section-cta p { font-size: 1rem !important; }
+    .section-cta div[style*="flex"] { flex-direction: column; gap: 1rem; width: 100%; padding: 0 1rem; }
+    
+    /* Footer */
+    .editorial-footer { flex-direction: column; align-items: flex-start; gap: 2rem; }
+    .editorial-footer div { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .editorial-footer a { margin: 0; display: block; margin-bottom: 0.5rem; }
+}
+
+@media (max-width: 480px) {
+    .container { padding: 0 1.5rem; }
+    .hero-title { font-size: 2.2rem; }
+    .p-num { font-size: 2.5rem; }
+    .modal-content { max-width: 100%; height: 100%; border-radius: 0; border: none; }
+    .prj-input-panel { border: none; height: 100%; padding: 2rem 1.5rem; justify-content: flex-start; overflow-y: auto; }
+}
+
+/* ========================================
+   CONTACT FORM STYLES (Ported from styles.css)
+   ======================================== */
+.prj-inquiry-zone {
+    padding: 80px 20px;
+    background: #000;
+}
+
+.prj-max-bound {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.prj-title-block {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.prj-main-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.prj-sub-caption {
+    font-size: 1.25rem;
+    color: #999;
+}
+
+.prj-dual-layout {
+    display: grid;
+    /* grid-template-columns: 1fr 1fr; Remove splitting for modal use, or keep consistent */
+    display: block; /* For modal, we just want the form panel style */
+    gap: 0;
+}
+
+.prj-input-panel {
+    background: #0a0a0a;
+    padding: 30px 25px; /* Drastically reduced from 60px 40px */
+    border: 1px solid #333; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.prj-field-wrapper {
+    margin-bottom: 15px; /* Reduced from 25px */
+}
+
+.prj-field-tag {
+    color: #fff;
+    margin-bottom: 8px;
+    display: block;
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-align: left; 
+}
+
+.prj-text-field,
+.prj-choice-field,
+.prj-message-field {
+    width: 100%;
+    padding: 10px 14px; /* Reduced from 14px 18px */
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 0.95rem; /* Slightly smaller font */
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.prj-text-field:focus,
+.prj-choice-field:focus,
+.prj-message-field:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: #1a1a1a;
+}
+
+.prj-text-field::placeholder,
+.prj-message-field::placeholder {
+    color: #666;
+}
+
+/* Remove spin buttons from number inputs */
+.prj-text-field[type=number]::-webkit-inner-spin-button, 
+.prj-text-field[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+.prj-text-field[type=number] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.prj-choice-field {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23999' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    padding-right: 40px;
+}
+
+.prj-choice-field option {
+    background: #111;
+    color: #fff;
+}
+
+.prj-message-field {
+    min-height: 80px; /* Reduced from 120px */
+    resize: vertical;
+}
+
+.prj-split-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.prj-action-trigger {
+    width: 100%;
+    padding: 16px 32px;
+    background: #fff;
+    color: #000;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.prj-action-trigger:hover {
+    background: #e0e0e0;
+    transform: translateY(-2px);
+}
+
+.prj-action-trigger:active {
+    transform: translateY(0);
+}
+
+.prj-legal-note {
+    text-align: center;
+    color: var(--accent);
+    font-size: 0.9rem;
+    margin-top: 20px;
+    line-height: 1.5;
+}
+
+@media (max-width: 992px) {
+    .prj-input-panel {
+        padding: 40px 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .prj-split-fields {
+        grid-template-columns: 1fr;
+    }
+}

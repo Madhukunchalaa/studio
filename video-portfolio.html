@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Portfolio - Studio X AI</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32"
+    href="https://pub-d8add5c3ed1e4923aa87c457caea356d.r2.dev/Studio%20X%20AI_Logo.png">
+  <link rel="icon" type="image/png" sizes="16x16"
+    href="https://pub-d8add5c3ed1e4923aa87c457caea356d.r2.dev/Studio%20X%20AI_Logo.png">
+  <link rel="apple-touch-icon" href="https://pub-d8add5c3ed1e4923aa87c457caea356d.r2.dev/Studio%20X%20AI_Logo.png">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+    }
+    
+    .portfolio-header {
+      padding: 120px 0 60px;
+      text-align: center;
+      background: linear-gradient(to bottom, rgba(0,210,255,0.05), transparent);
+    }
+    
+    .portfolio-title {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      color: white;
+    }
+    
+    .highlight {
+        color: var(--theme-color, #00d2ff);
+    }
+
+    .video-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 30px;
+        padding-bottom: 80px;
+    }
+
+    .portfolio-card {
+        background: #111;
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 12px;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .portfolio-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 210, 255, 0.15);
+        border-color: rgba(0, 210, 255, 0.3);
+    }
+
+    .card-video-preview {
+        width: 100%;
+        aspect-ratio: 16/9;
+        background: black;
+        position: relative;
+    }
+
+    .card-video-preview video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .card-content {
+        padding: 20px;
+    }
+
+    .card-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        color: white;
+    }
+
+    .card-actions {
+        display: flex;
+        gap: 10px;
+    }
+
+    .btn-watch {
+        flex: 1;
+        background: var(--theme-color, #00d2ff);
+        color: black;
+        text-align: center;
+        padding: 10px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: opacity 0.2s;
+        border: 1px solid var(--theme-color, #00d2ff);
+    }
+    
+    .btn-watch:hover {
+        opacity: 0.9;
+        color: black;
+    }
+
+    .btn-copy {
+        width: 46px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: 1px solid rgba(255,255,255,0.2);
+        color: white;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .btn-copy:hover {
+        background: rgba(255,255,255,0.1);
+        border-color: white;
+    }
+
+    .tooltip-message {
+        position: fixed;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%) translateY(100px);
+        background: #333;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 30px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        opacity: 0;
+        transition: all 0.3s ease;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .tooltip-message.show {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <div id="navbar-placeholder"></div>
+
+  <!-- Header -->
+  <header class="portfolio-header">
+    <div class="container">
+        <h1 class="portfolio-title">Video <span class="highlight">Portfolio</span></h1>
+        <p class="text-secondary">Shareable links for all our creative work. Click the copy icon to get a direct link.</p>
+    </div>
+  </header>
+
+  <!-- Video Grid -->
+  <div class="container">
+    <div class="video-grid" id="videoGrid">
+        <!-- Cards will be injected by JS -->
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="tooltip-message" id="toast">
+    <i class="bi bi-check-circle-fill" style="color: #4ade80"></i>
+    <span>Link copied to clipboard!</span>
+  </div>
+
+  <!-- Footer -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/common.js"></script>
+  
+  <script>
+    // Data Configuration
+    const videos = [
+        {
+            title: "Melbourne Wedding Venues",
+            url: "https://pub-d8add5c3ed1e4923aa87c457caea356d.r2.dev/Melboune%20Wedding%20Venues%20-%201min%2013%20sec%20V2.mp4"
+        },
+        {
+            title: "Brand Video Production",
+            url: "https://pub-d8add5c3ed1e4923aa87c457caea356d.r2.dev/brand.mp4"
+        },
+        {
+            title: "Family AI Story",
+            url: "https://pub-d8add5c3ed1e4923aa87c457caea356d.r2.dev/family-ai.mp4"
+        },
+        {
+            title: "YouTube Content",
+            url: "https://pub-d8add5c3ed1e4923aa87c457caea356d.r2.dev/yt.mp4"
+        },
+        {
+            title: "Crocodile Documentary",
+            url: "https://pub-d8add5c3ed1e4923aa87c457caea356d.r2.dev/crocodile.mp4"
+        },
+        {
+            title: "Marco - Short Film",
+            url: "https://pub-d8add5c3ed1e4923aa87c457caea356d.r2.dev/marco.mp4"
+        },
+        {
+            title: "Value Homes Real Estate",
+            url: "https://pub-d8add5c3ed1e4923aa87c457caea356d.r2.dev/Value%20Homes.mp4"
+        },
+        {
+            title: "AI Avatar - Rose",
+            url: "https://pub-d8add5c3ed1e4923aa87c457caea356d.r2.dev/rose.mp4"
+        },
+        {
+            title: "Learning & Education",
+            url: "https://pub-d8add5c3ed1e4923aa87c457caea356d.r2.dev/learning.mp4"
+        }
+    ];
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const grid = document.getElementById('videoGrid');
+        
+        videos.forEach(video => {
+            // Construct the shareable link via video.html
+            // Fix: We decodeURI first to ensure we don't double-encode existing %20s in the source URL
+            // Then we encodeURIComponent to make it safe for the URL parameter
+            const rawUrl = decodeURI(video.url);
+            const shareLink = `${window.location.origin}/video.html?url=${encodeURIComponent(rawUrl)}&title=${encodeURIComponent(video.title)}`;
+            
+            const card = document.createElement('div');
+            card.className = 'portfolio-card';
+            card.innerHTML = `
+                <div class="card-video-preview">
+                    <!-- Muted, autoplay loop for preview effect -->
+                    <video src="${video.url}" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause(); this.currentTime = 0;"></video>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">${video.title}</h3>
+                    <div class="card-actions">
+                        <a href="${shareLink}" class="btn-watch" target="_blank">
+                            <i class="bi bi-play-circle-fill me-2"></i> Watch Page
+                        </a>
+                        <button class="btn-copy" onclick="copyLink('${shareLink}')" title="Copy Link">
+                            <i class="bi bi-link-45deg" style="font-size: 1.2rem;"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    });
+
+    function copyLink(link) {
+        navigator.clipboard.writeText(link).then(() => {
+            showToast();
+        }).catch(err => {
+            console.error('Failed to copy: ', err);
+            // Fallback for non-secure contexts if needed (though clipboard usually needs SSL or localhost)
+            const textArea = document.createElement("textarea");
+            textArea.value = link;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand("Copy");
+            textArea.remove();
+            showToast();
+        });
+    }
+
+    function showToast() {
+        const toast = document.getElementById('toast');
+        toast.classList.add('show');
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000);
+    }
+  </script>
+</body>
+
+</html>

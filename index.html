@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Breathline Yoga Studio</title>
+  <meta name="description" content="A clean, calm yoga studio website with hand-crafted generative art and a unique, modern layout.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Spline+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1a1b18;
+      --mist: #f5f3ef;
+      --sage: #cfe0d6;
+      --fern: #7a9b86;
+      --clay: #d8b9a5;
+      --stone: #efe9e3;
+      --sky: #dfe7f1;
+      --accent: #c2835f;
+      --shadow: 0 20px 60px rgba(20, 20, 20, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Spline Sans", sans-serif;
+      color: var(--ink);
+      background: radial-gradient(1200px 700px at 10% -10%, #ffffff 0%, var(--mist) 45%, var(--stone) 100%);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img, svg {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      overflow: hidden;
+    }
+
+    .container {
+      width: min(1120px, 92vw);
+      margin: 0 auto;
+    }
+
+    .nav {
+      padding: 28px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .logo {
+      font-family: "Fraunces", serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      font-size: 0.95rem;
+    }
+
+    .nav-cta {
+      border: 1px solid var(--ink);
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      transition: transform 0.2s ease, background 0.2s ease;
+      background: #ffffff;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      background: var(--sage);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 40px;
+      align-items: center;
+      padding: 32px 0 60px;
+    }
+
+    .hero h1 {
+      font-family: "Fraunces", serif;
+      font-size: clamp(2.6rem, 3.4vw, 4rem);
+      line-height: 1.1;
+      margin-bottom: 18px;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      margin-bottom: 26px;
+      color: #2e2f2c;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      padding: 12px 20px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+      transition: all 0.2s ease;
+      background: var(--ink);
+      color: #fff;
+    }
+
+    .btn.secondary {
+      background: transparent;
+      border-color: var(--ink);
+      color: var(--ink);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border: 1px dashed rgba(120, 120, 120, 0.2);
+      border-radius: 22px;
+      pointer-events: none;
+    }
+
+    .hero-badges {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+      font-size: 0.85rem;
+    }
+
+    .hero-badges span {
+      background: var(--sage);
+      padding: 6px 12px;
+      border-radius: 999px;
+    }
+
+    .section {
+      padding: 70px 0;
+    }
+
+    .section-title {
+      font-family: "Fraunces", serif;
+      font-size: clamp(1.8rem, 2.6vw, 2.6rem);
+      margin-bottom: 16px;
+    }
+
+    .section-subtitle {
+      max-width: 640px;
+      color: #3b3b37;
+    }
+
+    .classes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 30px;
+    }
+
+    .class-card {
+      background: #ffffff;
+      border-radius: 22px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .class-card h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .class-meta {
+      font-size: 0.9rem;
+      color: #4a4b46;
+    }
+
+    .class-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--sky);
+      font-size: 0.8rem;
+    }
+
+    .schedule {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 30px;
+      margin-top: 28px;
+    }
+
+    .schedule-card {
+      background: #ffffff;
+      padding: 24px;
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 16px;
+    }
+
+    .schedule-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      font-size: 0.95rem;
+    }
+
+    .schedule-row:last-child {
+      border-bottom: none;
+    }
+
+    .instructors {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 32px;
+    }
+
+    .instructor-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 14px;
+    }
+
+    .instructor-card h4 {
+      font-size: 1.1rem;
+    }
+
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .quote {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      font-size: 0.95rem;
+    }
+
+    .cta {
+      background: linear-gradient(120deg, var(--sage), var(--clay));
+      border-radius: 30px;
+      padding: 36px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+      align-items: center;
+      box-shadow: var(--shadow);
+    }
+
+    .cta h3 {
+      font-family: "Fraunces", serif;
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+
+    footer {
+      padding: 30px 0 40px;
+      font-size: 0.9rem;
+      color: #4a4b46;
+    }
+
+    .floating-shape {
+      position: absolute;
+      opacity: 0.8;
+      animation: drift 10s ease-in-out infinite;
+    }
+
+    .shape-one {
+      width: 160px;
+      top: -40px;
+      right: 20px;
+    }
+
+    .shape-two {
+      width: 130px;
+      bottom: -50px;
+      left: -40px;
+      animation-delay: 2s;
+    }
+
+    @keyframes drift {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(12px); }
+    }
+
+    @media (max-width: 900px) {
+      .hero, .schedule, .cta {
+        grid-template-columns: 1fr;
+      }
+      .classes-grid, .instructors, .testimonials {
+        grid-template-columns: 1fr;
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="container">
+      <nav class="nav">
+        <div class="logo">Breathline</div>
+        <div class="nav-links">
+          <a href="#classes">Classes</a>
+          <a href="#schedule">Schedule</a>
+          <a href="#instructors">Instructors</a>
+          <a href="#membership">Membership</a>
+        </div>
+        <a class="nav-cta" href="#membership">Book a trial</a>
+      </nav>
+
+      <section class="hero">
+        <div>
+          <h1>Yoga that feels like an exhale.</h1>
+          <p>
+            Breathline is a calm, light-filled studio focused on alignment, gentle strength, and mindful recovery.
+            Slow flows, deep stretches, and modern rituals for busy lives.
+          </p>
+          <div class="hero-actions">
+            <a class="btn" href="#membership">Start your week</a>
+            <a class="btn secondary" href="#classes">Explore classes</a>
+          </div>
+          <div class="hero-badges">
+            <span>Morning light sessions</span>
+            <span>Small groups</span>
+            <span>Mat + tea included</span>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <svg viewBox="0 0 320 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Generative yoga artwork">
+            <defs>
+              <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="#cfe0d6"/>
+                <stop offset="100%" stop-color="#d8b9a5"/>
+              </linearGradient>
+            </defs>
+            <rect width="320" height="360" rx="28" fill="#f5f3ef"/>
+            <path d="M40 210 C90 150, 140 150, 190 210 C230 250, 270 260, 290 210" stroke="#7a9b86" stroke-width="12" fill="none" stroke-linecap="round"/>
+            <circle cx="130" cy="140" r="60" fill="url(#g1)" opacity="0.9"/>
+            <circle cx="190" cy="120" r="44" fill="#dfe7f1" opacity="0.9"/>
+            <path d="M70 260 C120 220, 170 220, 240 270" stroke="#c2835f" stroke-width="8" fill="none" stroke-linecap="round"/>
+            <rect x="50" y="260" width="40" height="6" rx="3" fill="#1a1b18" opacity="0.3"/>
+          </svg>
+          <div class="hero-badges">
+            <span>Studio ambiance</span>
+            <span>Breath-led flow</span>
+          </div>
+          <svg class="floating-shape shape-one" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M40 70 C60 30, 120 20, 150 60 C175 95, 150 145, 100 150 C60 150, 20 110, 40 70 Z" fill="#dfe7f1"/>
+          </svg>
+          <svg class="floating-shape shape-two" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M50 60 C80 20, 140 30, 150 80 C160 130, 110 160, 70 140 C40 120, 30 90, 50 60 Z" fill="#cfe0d6"/>
+          </svg>
+        </div>
+      </section>
+    </div>
+
+    <section id="classes" class="section">
+      <div class="container">
+        <h2 class="section-title">Signature classes</h2>
+        <p class="section-subtitle">Gentle flow meets intentional design. Each class is paced for calm, clarity, and body alignment.</p>
+        <div class="classes-grid">
+          <article class="class-card">
+            <svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect width="260" height="180" rx="20" fill="#f0e7e0"/>
+              <path d="M40 120 C80 60, 140 60, 200 120" stroke="#7a9b86" stroke-width="10" fill="none" stroke-linecap="round"/>
+              <circle cx="130" cy="70" r="28" fill="#d8b9a5"/>
+            </svg>
+            <div>
+              <h3>Sunrise Flow</h3>
+              <p class="class-meta">A bright, steady vinyasa to wake the body and open the ribs.</p>
+              <span class="class-tag">45 min · Energizing</span>
+            </div>
+          </article>
+          <article class="class-card">
+            <svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect width="260" height="180" rx="20" fill="#e5eef0"/>
+              <path d="M30 110 C90 150, 170 150, 230 110" stroke="#c2835f" stroke-width="10" fill="none" stroke-linecap="round"/>
+              <rect x="70" y="50" width="120" height="40" rx="20" fill="#cfe0d6"/>
+            </svg>
+            <div>
+              <h3>Rest & Restore</h3>
+              <p class="class-meta">Longer holds, bolsters, and breathwork for full-body reset.</p>
+              <span class="class-tag">60 min · Gentle</span>
+            </div>
+          </article>
+          <article class="class-card">
+            <svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect width="260" height="180" rx="20" fill="#f4f0e7"/>
+              <path d="M60 140 C90 80, 160 80, 200 140" stroke="#7a9b86" stroke-width="10" fill="none" stroke-linecap="round"/>
+              <circle cx="110" cy="70" r="16" fill="#dfe7f1"/>
+              <circle cx="150" cy="60" r="26" fill="#d8b9a5"/>
+            </svg>
+            <div>
+              <h3>Slow Strength</h3>
+              <p class="class-meta">Core stability and functional mobility with a mindful pace.</p>
+              <span class="class-tag">50 min · Grounded</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="schedule" class="section">
+      <div class="container">
+        <h2 class="section-title">Weekly rhythm</h2>
+        <p class="section-subtitle">An easy, breathable schedule with early, midday, and after-work flows.</p>
+        <div class="schedule">
+          <div class="schedule-card">
+            <div class="schedule-row">
+              <strong>Mon</strong>
+              <span>6:30 AM · Sunrise Flow</span>
+              <span>5:45 PM · Slow Strength</span>
+            </div>
+            <div class="schedule-row">
+              <strong>Tue</strong>
+              <span>7:00 AM · Restore</span>
+              <span>6:00 PM · Candlelight Flow</span>
+            </div>
+            <div class="schedule-row">
+              <strong>Wed</strong>
+              <span>6:30 AM · Sunrise Flow</span>
+              <span>5:30 PM · Breathwork Lab</span>
+            </div>
+            <div class="schedule-row">
+              <strong>Thu</strong>
+              <span>7:15 AM · Mobility</span>
+              <span>6:15 PM · Slow Strength</span>
+            </div>
+            <div class="schedule-row">
+              <strong>Fri</strong>
+              <span>8:00 AM · Restore</span>
+              <span>5:00 PM · Unwind Flow</span>
+            </div>
+          </div>
+          <div class="schedule-card">
+            <h3>Studio rituals</h3>
+            <p>Every class ends with a 3-minute stillness and herbal tea. We keep the room warm, calm, and softly lit.</p>
+            <p><strong>What to bring:</strong> just a water bottle. Mats, towels, and blocks are provided.</p>
+            <a class="btn secondary" href="#membership">Reserve your spot</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="instructors" class="section">
+      <div class="container">
+        <h2 class="section-title">Meet the guides</h2>
+        <p class="section-subtitle">Thoughtful teachers with a gentle approach to breath, alignment, and care.</p>
+        <div class="instructors">
+          <div class="instructor-card">
+            <h4>Leena Santos</h4>
+            <p>Vinyasa + pranayama, 600-hour certified. Known for grounding cues and soft landings.</p>
+            <span class="class-tag">Morning Flow</span>
+          </div>
+          <div class="instructor-card">
+            <h4>Mira Patel</h4>
+            <p>Restorative and trauma-informed guidance with a focus on safe, supported movement.</p>
+            <span class="class-tag">Restore</span>
+          </div>
+          <div class="instructor-card">
+            <h4>Jonas Reed</h4>
+            <p>Strength + mobility specialist with a love for slow, precise sequencing.</p>
+            <span class="class-tag">Slow Strength</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Kind words</h2>
+        <div class="testimonials">
+          <div class="quote">“The room feels like a deep breath. I leave lighter every time.”</div>
+          <div class="quote">“Thoughtful, unhurried, and beautifully designed. It’s my weekly reset.”</div>
+          <div class="quote">“The slow strength class changed how I move all week.”</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="membership" class="section">
+      <div class="container">
+        <div class="cta">
+          <div>
+            <h3>Start with a three-class intro pass.</h3>
+            <p>Try any combination of flows within two weeks. Includes mat rental and tea.</p>
+          </div>
+          <div>
+            <p><strong>$45 Intro Pass</strong></p>
+            <p>Unlimited members get free guest passes every month.</p>
+            <a class="btn" href="#">Join Breathline</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <p>Breathline Yoga Studio · 212 Cedar Lane · Open daily 6am–8pm</p>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

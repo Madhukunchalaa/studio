@@ -1,0 +1,188 @@
+/* Studio X Dashboard CSS - Refined */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --bg-base: #050505; /* Deep black */
+    --bg-surface: #0f0f0f;
+    --bg-card: #141414;
+    --accent-gold: #cfaa6e;
+    --accent-blue: #0088cc;
+    --text-primary: #f0f0f0;
+    --text-secondary: #888;
+    --border-color: #222;
+    --sidebar-width: 280px; /* Wider sidebar */
+    --header-height: 80px;
+}
+
+body {
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* --- Layout --- */
+.dashboard-layout { display: flex; min-height: 100vh; }
+
+/* Sidebar */
+.sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--bg-surface);
+    border-right: 1px solid var(--border-color);
+    position: fixed; top: 0; left: 0; height: 100%;
+    z-index: 1000;
+    display: flex; flex-direction: column;
+    padding-top: 10px;
+}
+
+.sidebar-header {
+    height: var(--header-height);
+    display: flex; align-items: center; padding: 0 32px;
+    margin-bottom: 2rem;
+}
+
+.sidebar-logo {
+    font-weight: 800; font-size: 1.4rem; color: #fff;
+    text-decoration: none; letter-spacing: -0.02em;
+}
+.sidebar-logo span { color: var(--accent-gold); }
+
+.sidebar-nav { flex: 1; padding: 0 16px; }
+
+.nav-link {
+    display: flex; align-items: center;
+    padding: 14px 20px;
+    color: var(--text-secondary);
+    text-decoration: none; font-weight: 500;
+    border-radius: 8px; margin-bottom: 8px;
+    transition: all 0.2s;
+}
+
+.nav-link:hover { color: #fff; background: rgba(255,255,255,0.03); }
+.nav-link.active {
+    background: linear-gradient(90deg, rgba(207, 170, 110, 0.1), transparent);
+    color: var(--accent-gold);
+    font-weight: 600;
+}
+
+.nav-link i { width: 24px; margin-right: 14px; font-size: 1.2rem; }
+
+/* Main Content */
+.main-content {
+    flex: 1; margin-left: var(--sidebar-width); padding: 40px 50px;
+}
+
+.top-bar {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 40px;
+}
+
+.page-title { font-size: 1.8rem; font-weight: 700; margin: 0; letter-spacing: -0.02em; }
+
+/* Cards */
+.stat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 30px;
+    height: 100%;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
+}
+.stat-card:hover { transform: translateY(-3px); border-color: #333; }
+
+.stat-title {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.05em;
+    margin-bottom: 16px;
+}
+
+.stat-value { font-size: 2.2rem; font-weight: 800; color: #fff; line-height: 1; }
+
+.table-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.card-header {
+    background: rgba(255,255,255,0.015);
+    padding: 24px 32px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex; justify-content: space-between; align-items: center;
+}
+
+.card-heading { margin: 0; font-size: 1.2rem; font-weight: 700; }
+
+/* Refined Table */
+.data-table { width: 100%; border-collapse: separate; border-spacing: 0; }
+.data-table th {
+    background: rgba(0,0,0,0.2);
+    color: var(--text-secondary);
+    font-weight: 600; font-size: 0.8rem;
+    text-transform: uppercase; letter-spacing: 0.05em;
+    padding: 18px 32px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+.data-table td {
+    padding: 20px 32px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    vertical-align: middle;
+    color: #ddd;
+    font-size: 0.95rem;
+}
+.data-table tr:hover td { background: rgba(255,255,255,0.02); cursor: pointer; }
+.data-table tr:last-child td { border-bottom: none; }
+
+/* Status Badges */
+.badge {
+    padding: 8px 14px; border-radius: 6px;
+    font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.badge-new { background: rgba(207, 170, 110, 0.1); color: var(--accent-gold); border: 1px solid rgba(207, 170, 110, 0.2); }
+.badge-contacted { background: rgba(0, 136, 204, 0.1); color: var(--accent-blue); border: 1px solid rgba(0, 136, 204, 0.2); }
+
+/* Inputs & Buttons */
+.form-input {
+    background: #0a0a0a; border: 1px solid #333;
+    color: #fff; padding: 12px 16px; border-radius: 8px;
+    font-size: 0.95rem; transition: border-color 0.2s;
+}
+.form-input:focus { outline: none; border-color: var(--accent-gold); }
+
+.btn-primary {
+    background: var(--accent-blue); color: #fff; border: none;
+    padding: 12px 24px; border-radius: 8px; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
+}
+.btn-primary:hover { filter: brightness(1.1); transform: translateY(-1px); }
+
+/* Modal Styles */
+.modal-content.dark-modal {
+    background: #181818;
+    border: 1px solid #333;
+    color: #fff;
+    min-width: 600px; /* Wider modal */
+}
+.modal-header { border-bottom: 1px solid #333; padding: 24px; }
+.modal-body { padding: 30px; }
+.modal-footer { border-top: 1px solid #333; padding: 20px 30px; }
+.btn-close { filter: invert(1); }
+
+/* Helper Classes */
+.text-muted { color: #777 !important; }
+.fw-bold { font-weight: 700 !important; }
+
+/* Mobile */
+@media(max-width: 768px) {
+    .main-content { padding: 20px; }
+    .sidebar { transform: translateX(-100%); }
+    .data-table th, .data-table td { padding: 12px 16px; }
+}

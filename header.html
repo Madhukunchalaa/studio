@@ -1,0 +1,94 @@
+<!-- Required CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+<!-- Navbar -->
+<nav id="navbar" class="navbar navbar-light fixed-top">
+    <div class="container d-flex justify-content-between align-items-center py-2">
+        <!-- Logo -->
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+            <img src="assets/images/newlogovisionX.png" alt="Studio X AI Logo" height="60">
+        </a>
+
+        <div class="d-flex gap-3">
+            <div class="dropdown">
+                <a href="#" class="text-dark fs-3" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-list" style="color: white;"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end shadow">
+                    <li><a class="dropdown-item" href="index.html">Home</a></li>
+                    <li><a class="dropdown-item" href="about.html">About</a></li>
+                    <li><a class="dropdown-item" href="service.html">Services</a></li>
+                    <li><a class="dropdown-item" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <a href="contact.html#form" class="btn btn-primary rounded-pill px-4 py-2 fw-semibold">
+                Get in touch →
+            </a>
+        </div>
+    </div>
+</nav>
+
+<!-- Required Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Navbar Scroll Effect Script -->
+<script>
+    window.addEventListener('scroll', function () {
+        const navbar = document.getElementById('navbar');
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+</script>
+
+
+</style>
+</head>
+
+<body>
+    <div class="bg-wrapper">
+        <div class="circuit-lines">
+            <div class="circuit-line"></div>
+            <div class="circuit-line"></div>
+            <div class="circuit-line"></div>
+        </div>
+    </div>
+
+    <nav>
+        <div class="navbar-content">
+            <div class="logo">
+                <div class="logo-icon">
+                    <div class="neural-node"></div>
+                </div>
+                <span class="logo-text">VisionX</span>
+            </div>
+
+            <div class="nav-menu">
+                <div class="nav-item">Home</div>
+                <div class="nav-item">About</div>
+                <div class="nav-item has-dropdown">
+                    Services
+                    <div class="dropdown">
+                        <div class="dropdown-item">AI Video Generation</div>
+                        <div class="dropdown-item">AI Image Creation</div>
+                        <div class="dropdown-item">Custom AI Models</div>
+                        <div class="dropdown-item">API Integration</div>
+                    </div>
+                </div>
+                <div class="nav-item">Contact</div>
+            </div>
+
+            <button class="cta-button">
+                Get in touch <span class="arrow">→</span>
+            </button>
+        </div>
+    </nav>
+
+
+</body>
+
+</html>
