@@ -170,7 +170,6 @@ document.addEventListener('DOMContentLoaded', function () {
     initLazyIframes();
     initLazyVideos();
     injectModal();
-    injectCookieNotice();
 });
 
 /**
@@ -283,43 +282,4 @@ function initLazyVideos() {
     }
 }
 
-// ========================================
-// COOKIE NOTICE LOGIC
-// ========================================
-
-function injectCookieNotice() {
-    // Check if user has already accepted
-    if (localStorage.getItem('cookieConsent') === 'true') {
-        return;
-    }
-
-    const cookieHTML = `
-    <div id="cookie-notice" class="cookie-notice-banner">
-        <div class="cookie-content">
-            <h3>Cookie Notice</h3>
-            <p>We use cookies to improve site functionality, analyse traffic, and enhance user experience. By continuing to use this site, you consent to our use of cookies.</p>
-        </div>
-        <div class="cookie-actions">
-            <button id="accept-cookies" class="btn btn-sm btn-primary">Accept</button>
-            <a href="privacy-policy.html#cookies" class="btn btn-sm btn-outline-light">Manage Cookies</a>
-        </div>
-    </div>
-    `;
-
-    document.body.insertAdjacentHTML('beforeend', cookieHTML);
-
-    const acceptBtn = document.getElementById('accept-cookies');
-    if (acceptBtn) {
-        acceptBtn.addEventListener('click', function() {
-            localStorage.setItem('cookieConsent', 'true');
-            const banner = document.getElementById('cookie-notice');
-            if (banner) {
-                banner.style.opacity = '0';
-                setTimeout(() => {
-                    banner.remove();
-                }, 500);
-            }
-        });
-    }
-}
 
